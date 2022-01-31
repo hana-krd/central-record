@@ -12,16 +12,27 @@ message PhoneNumber{
   string number = 2;
 }
 
+message Nationality{
+  string country = 1;
+  string nationalCode = 2;
+  optional string passportId = 3;
+}
+
+message Paginate{
+  optional int32 page = 3 [default = 0];
+  optional int32 count = 4 [default = 10];
+}
+
 message CreateUser{
   string name = 1;
   PhoneNumber mobile = 2;
+  Nationality nationality = 3;
 }
 
 message SeachUserRequest {
   string name = 1;
   PhoneNumber mobile = 2;
-  optional int32 page = 3 [default = 0];
-  optional int32 count = 4 [default = 10];
+  optional Paginate paginate = 3;
 }
 
 message SearchUserResponse{
@@ -32,4 +43,5 @@ message UserResponse {
   string id = 1;
   string name = 2;
   PhoneNumber mobile = 3;
+  Nationality nationality = 4;
 }

@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
 import { UsersController } from './users.controller';
-import { UsersService } from './users.service';
+import { UsersService } from './services/users.service';
 import { ClientsModule } from '@nestjs/microservices';
 import { grpcClientOptions } from '../config/grpc-client.options';
 import { MongooseModule } from '@nestjs/mongoose';
 import { User, UserSchema } from './schemas/user.schema';
-import { UserSerializer } from './user.serializer';
+import { UserSerializer } from './services/user.serializer';
 
 @Module({
   imports: [

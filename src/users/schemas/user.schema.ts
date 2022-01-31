@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { Document } from 'mongoose';
+import { Nationality } from "../models/nationality.model";
 import { PhoneNumber } from "../models/phone-number.model";
 
 export type UserDocument = User & Document;
@@ -16,6 +17,10 @@ export class User{
 
     @Prop()
     mobile: PhoneNumber;
+
+    @Prop()
+    nationality: Nationality;
+
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
