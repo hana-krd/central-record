@@ -3,14 +3,33 @@ syntax = "proto3";
 package user;
 
 service UserService {
-  rpc FindOne (UserById) returns (User);
+  rpc Create(CreateUser) returns (UserResponse);
+  rpc FindOne (SeachUserRequest) returns (UserResponse);
 }
 
-message UserById {
-  int32 id = 1;
+message PhoneNumber{
+  string countryCode = 1;
+  string number = 2;
 }
 
-message User {
-  int32 id = 1;
+message CreateUser{
+  string name = 1;
+  PhoneNumber mobile = 2;
+}
+
+message SeachUserRequest {
+  string name = 1;
+  PhoneNumber mobile = 2;
+  optional int32 page = 3 [default = 0];
+  optional int32 count = 4 [default = 10];
+}
+
+message SearchUserResponse{
+  repeated UserResponse users = 1;
+}
+
+message UserResponse {
+  string id = 1;
   string name = 2;
+  PhoneNumber mobile = 3;
 }
