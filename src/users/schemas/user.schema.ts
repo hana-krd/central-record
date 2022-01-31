@@ -26,7 +26,12 @@ export class User{
     @Prop()
     expertise: DoctorExpertise;
 
-    @Prop()
+    @Prop({
+        type: String,
+        required: false,
+        enum: Object.values(Gender),
+        default: Gender.UNKNOWN
+    })
     gender: Gender;
 
     @Prop()

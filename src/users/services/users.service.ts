@@ -23,7 +23,7 @@ export class UsersService {
         });
 
 
-        if (userExists && userExists.length) {
+        if (userExists && userExists.items && userExists.items.length) {
             return userExists[0];
         }
 
@@ -31,7 +31,7 @@ export class UsersService {
         return this.userSerialize.serialize(createdUser);
     }
 
-    async findAll(filters: SearchUserFilter): Promise<UserResponse[]> {
+    async findAll(filters: SearchUserFilter): Promise<{items: UserResponse[]}> {
         const paginate = filters.paginate;
 
         const users = await this.userModel.find({
@@ -48,7 +48,7 @@ export class UsersService {
             .skip(paginate? paginate.count * paginate.page: 0)
             .limit(paginate? paginate.count: 10)
             .lean();
-
+        
         return this.userSerialize.serializeList(users);
     }
 

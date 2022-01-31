@@ -24,7 +24,7 @@ export class UsersController {
     async findAll(
       data: SearchUserFilter,
       metadata: Metadata,
-      call: ServerUnaryCall<any, any>): Promise<UserResponse[]> {
+      call: ServerUnaryCall<any, any>): Promise<{items: UserResponse[]}> {
       return await this.userService.findAll(data);
     }
   

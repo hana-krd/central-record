@@ -8,7 +8,7 @@ export class UserSerializer implements BaseSerializer<User, UserResponse> {
     serialize(inData: User): UserResponse {
         return inData;
     }
-    serializeList(inData: User[]): UserResponse[] {
-        return inData.map(user => this.serialize(user));
+    serializeList(inData: User[]): { items: UserResponse[] } {
+        return { items: inData.map(user => this.serialize(user)) };
     } 
 }
