@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { filter } from 'rxjs';
+import { CreateDoctor } from '../interfaces/request/create-doctor.interface';
 import { CreateUser } from '../interfaces/request/create-user.interface';
 import { SearchUserFilter } from '../interfaces/request/search-user-filter.interface';
 import { UserResponse } from '../interfaces/response/user-response.interface';
@@ -49,5 +50,17 @@ export class UsersService {
             .lean();
 
         return this.userSerialize.serializeList(users);
+    }
+
+    async createDoctor(data: CreateDoctor): Promise<UserResponse>{
+        const updateUser = await this.userModel.findOneAndUpdate(
+            {
+                _id: data.userId
+            },
+            {
+                expertise: data.expertise
+            }
+        ).lean();
+        return this.userSerialize.serialize(updateUser);
     }
 }

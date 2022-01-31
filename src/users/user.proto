@@ -4,7 +4,11 @@ package user;
 
 service UserService {
   rpc Create(CreateUser) returns (UserResponse);
-  rpc FindOne (SeachUserRequest) returns (UserResponse);
+  rpc FindAll (SeachUserRequest) returns (SearchUserResponse);
+}
+
+service DoctorService{
+  rpc Create(CreateDoctor)returns(UserResponse);
 }
 
 message PhoneNumber{
@@ -29,6 +33,15 @@ message CreateUser{
   Nationality nationality = 3;
 }
 
+message DoctorExpertise{
+  string expertiseId = 1;
+}
+
+message CreateDoctor{
+  string userId = 1;
+  DoctorExpertise expertise = 2;
+}
+
 message SeachUserRequest {
   string name = 1;
   PhoneNumber mobile = 2;
@@ -44,4 +57,5 @@ message UserResponse {
   string name = 2;
   PhoneNumber mobile = 3;
   Nationality nationality = 4;
+  optional DoctorExpertise expertise = 5;
 }
