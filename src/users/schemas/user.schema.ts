@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { Document } from 'mongoose';
+import { Gender } from "../gender.enum";
 import { DoctorExpertise } from "../models/doctor-expertise.model";
 import { Nationality } from "../models/nationality.model";
 import { PhoneNumber } from "../models/phone-number.model";
@@ -24,6 +25,12 @@ export class User{
 
     @Prop()
     expertise: DoctorExpertise;
+
+    @Prop()
+    gender: Gender;
+
+    @Prop()
+    birthday: Date;
 
 }
 
