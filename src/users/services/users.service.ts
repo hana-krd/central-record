@@ -42,6 +42,7 @@ export class UsersService {
                 filters.nationality && filters.nationality.passportId ? { 'nationality.passportId': filters.nationality.passportId  } : {},
                 filters.mobile && filters.mobile.countryCode ? { 'mobile.countryCode': filters.mobile.countryCode } : {},
                 filters.mobile && filters.mobile.number ? { 'mobile.number': filters.mobile.number } : {},
+                filters.gender ? { 'gender': {$eq: filters.gender} } : {},
             ]
         })
             .sort({createdAt: -1})
